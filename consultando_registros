@@ -1,0 +1,18 @@
+SELECT p.pedido_id, p.data_pedido, p.status, p.total
+FROM pedidos p
+JOIN clientes c ON p.cliente_id = c.cliente_id
+WHERE c.cliente_id = 1;
+
+
+SELECT i.nome
+FROM ingredientes i
+JOIN pizza_ingredientes pi ON i.ingrediente_id = pi.ingrediente_id
+WHERE pi.pizza_id = 1;
+
+SELECT p.pedido_id, p.data_pedido, pi.quantidade, piz.nome AS pizza, i.nome AS ingrediente
+FROM pedidos p
+JOIN pedido_pizza pi ON p.pedido_id = pi.pedido_id
+JOIN pizzas piz ON pi.pizza_id = piz.pizza_id
+JOIN pizza_ingredientes pi2 ON piz.pizza_id = pi2.pizza_id
+JOIN ingredientes i ON pi2.ingrediente_id = i.ingrediente_id
+WHERE p.pedido_id = 1;
